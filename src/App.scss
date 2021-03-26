@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+$verdictColor: #0c66d3;
+
+.App {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.MuiAppBar-root.MuiAppBar-colorPrimary,
+.field,
+.player-btn {
+  align-items: center;
+}
+
+.MuiAppBar-root.MuiAppBar-colorPrimary {
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.score-board {
+  padding: 20px 0;
+}
+
+.app-bar,
+.field,
+.player-btn,
+.game-flow-btn-section,
+.btn-section {
+  display: flex;
+}
+
+.board,
+.field,
+.player-btn,
+.btn-section,
+.game-flow-btn-section {
+  justify-content: center;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  margin-top: 91px;
+}
+
+.field,
+.player-btn {
+  font-size: 33px;
+}
+
+.field {
+  height: 40px;
+}
+
+.player-btn {
+  height: 60px;
+  width: 60px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.field,
+.player-btn {
+  cursor: pointer;
+}
+
+.game-info {
+  margin-top: 75px;
+
+  .game-info-title {
+    margin: 45px 0;
+  }
+}
+
+.score-board-item {
+  padding: 5px;
+}
+
+.game-flow-btn-section {
+  margin-top: 20px;
+}
+
+.MuiButtonBase-root.game-flow-btn {
+  margin: 5px;
+}
+
+.game-status {
+  position: absolute;
+  z-index: 1;
+  margin: 30px auto 0;
+  left: 0;
+  right: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.game-status span,
+.game-over-info,
+.game-over-verdict span {
+  font-weight: bold;
+}
+
+.game-over-info {
+  font-size: 30px;
+}
+
+.game-over-verdict,
+.game-over-congrat {
+  font-size: 20px;
+}
+
+.game-over-congrat {
+  color: $verdictColor;
+  font-style: italic;
+}
+
+.game-over-verdict span,
+.game-over-congrat {
+  color: $verdictColor;
+}
+
+@media screen and (min-width: 1024px) {
+  .game-info {
+    margin-top: 110px;
+  }
+}
+
+@media screen and (min-width: 1430px) {
+  .game-flow-btn-section,
+  .game-status {
+    margin-top: 40px;
+  }
+
+  .board {
+    margin-top: 120px;
+  }
+}
