@@ -46,7 +46,7 @@ const Board = () => {
     if (boardLogic !== null) {
       console.log(boardLogic.calculateWinnerLines())
       //   setBoardFields(boardLogic.createEmptyBoard(boardSize))
-      setBoardFields(boardLogic.createEmptyBoard(boardSize))
+      setBoardFields(boardLogic.createInitialBoard(boardSize))
     }
   }, [boardLogic])
 
@@ -165,26 +165,27 @@ const Board = () => {
             <GameStatus gamerTurn={gamerTurn} verdict={verdict} />
             <div className="game-board">
               <div className="board">
-                {boardFields.map(
-                  (boardFieldsLine) =>
-                    boardFieldsLine.map((boardField, index) => (
-                      <Field
-                        key={index}
-                        value={boardField}
-                        index={index}
-                        onClick={handleClickField}
-                      />
-                    ))
+                {
+                  // boardFields.map(
+                  //   (boardFieldsLine) =>
+                  //     boardFieldsLine.map((boardField, index) => (
+                  //       <Field
+                  //         key={index}
+                  //         value={boardField}
+                  //         index={index}
+                  //         onClick={handleClickField}
+                  //       />
+                  //     ))
 
-                  // boardFields.map((boardField, index) => (
-                  //   <Field
-                  //     key={index}
-                  //     value={boardField}
-                  //     index={index}
-                  //     onClick={handleClickField}
-                  //   />
-                  // )
-                )}
+                  boardFields.map((boardField, index) => (
+                    <Field
+                      key={index}
+                      value={boardField}
+                      index={index}
+                      onClick={handleClickField}
+                    />
+                  ))
+                }
               </div>
             </div>
             <VerdictModal isOpen={modalIsOpen} />

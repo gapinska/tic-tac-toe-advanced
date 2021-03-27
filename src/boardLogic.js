@@ -14,9 +14,7 @@ function createBoardLogic(N) {
     let index = 0
     for (let row = 0; row < N; row++) {
       for (let col = 0; col < N; col++) {
-        if (index < Math.pow(N, N)) {
-          horizontalLines[row][col] = index++
-        }
+        horizontalLines[row][col] = index++
       }
     }
     return horizontalLines
@@ -50,9 +48,13 @@ function createBoardLogic(N) {
     return Array.from(Array(N), () => new Array(N).fill(null))
   }
 
+  function createInitialBoard() {
+    return Array.from(Array(N * N).fill(null))
+  }
+
   return {
     calculateWinnerLines,
-    createEmptyBoard,
+    createInitialBoard,
   }
 }
 
