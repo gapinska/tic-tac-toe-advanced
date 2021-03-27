@@ -44,6 +44,7 @@ const Board = () => {
 
   useEffect(() => {
     if (boardLogic !== null) {
+      console.log(boardFields)
       console.log(boardLogic.calculateWinnerLines())
       //   setBoardFields(boardLogic.createEmptyBoard(boardSize))
       setBoardFields(boardLogic.createInitialBoard(boardSize))
@@ -168,27 +169,14 @@ const Board = () => {
                 className="board"
                 style={{ gridTemplateColumns: `repeat(${boardSize}, 100px)` }}
               >
-                {
-                  // boardFields.map(
-                  //   (boardFieldsLine) =>
-                  //     boardFieldsLine.map((boardField, index) => (
-                  //       <Field
-                  //         key={index}
-                  //         value={boardField}
-                  //         index={index}
-                  //         onClick={handleClickField}
-                  //       />
-                  //     ))
-
-                  boardFields.map((boardField, index) => (
-                    <Field
-                      key={index}
-                      value={boardField}
-                      index={index}
-                      onClick={handleClickField}
-                    />
-                  ))
-                }
+                {boardFields.map((boardField, index) => (
+                  <Field
+                    key={index}
+                    value={boardField}
+                    index={index}
+                    onClick={handleClickField}
+                  />
+                ))}
               </div>
             </div>
             <VerdictModal isOpen={modalIsOpen} />

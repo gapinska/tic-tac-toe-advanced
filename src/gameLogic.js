@@ -16,15 +16,43 @@ const WINNER_LINES = [
 Object.freeze(WINNER_LINES)
 WINNER_LINES.forEach((WINNER_LINE) => Object.freeze(WINNER_LINE))
 
-function calculateWinner(fields) {
-  for (let i = 0; i < WINNER_LINES.length; i++) {
-    const [a, b, c] = WINNER_LINES[i]
-    if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
-      return fields[a]
+// function calculateWinner(fields, winnerLines, boardSize) {
+//   for (let i = 0; i < boardSize; i++) {
+//     const arr = winnerLines[i]
+//     if(arr[0])
+//     if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
+//       return fields[a]
+//     }
+//   }
+//   return null
+// }
+
+// function calculateWinner(fields) {
+//   for (let i = 0; i < WINNER_LINES.length; i++) {
+//     const [a, b, c] = WINNER_LINES[i]
+//     if (fields[a] && fields[a] === fields[b] && fields[a] === fields[c]) {
+//       return fields[a]
+//     }
+//   }
+//   return null
+// }
+
+function calculateWinner(boardFields, winnerLines, boardSize) {
+  for (let i = 0; i < winnerLines.length; i++) {
+    const arr = winnerLines[i]
+    for (let i = 0; i < boardSize; i++) {
+      if (!boardFields[arr[i]]) {
+        return null
+      } else {
+        if (i === boardSize - 1) {
+          return boardFields[arr[0]]
+        }
+      }
     }
   }
-  return null
 }
+
+function cheeckBoardLine(boardSize, winnerLine) {}
 
 function isAllFieldsOccupied(fields) {
   return !fields.includes(null)
