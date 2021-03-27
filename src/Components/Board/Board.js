@@ -35,9 +35,6 @@ const Board = () => {
   const [gamer2Score, setGamer2Score] = useState(0)
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [boardSize, setBoardSize] = useState(3)
-
-  const [inputVal, setInputVal] = useState(3)
-
   const [boardLogic, setBoardLogic] = useState(null)
   const classes = useStyles()
 
@@ -48,32 +45,34 @@ const Board = () => {
   useEffect(() => {
     if (boardLogic !== null) {
       console.log(boardLogic.calculateWinnerLines())
+      //   setBoardFields(boardLogic.createEmptyBoard(boardSize))
+      setBoardFields(boardLogic.createEmptyBoard(boardSize))
     }
   }, [boardLogic])
 
   useEffect(() => {
-    const verdict = calculateVerdict(boardFields)
-    switch (verdict) {
-      case X:
-        setGamer1Score((prevGamer1Score) => prevGamer1Score + 1)
-        setVerdict(verdict)
-        setContinueGameActive(true)
-        setModalIsOpen(true)
-        break
-      case O:
-        setGamer2Score((prevGamer1Score) => prevGamer1Score + 1)
-        setVerdict(verdict)
-        setContinueGameActive(true)
-        setModalIsOpen(true)
-        break
-      case TIE:
-        setVerdict(TIE)
-        setContinueGameActive(true)
-        setModalIsOpen(true)
-        break
-      default:
-        return
-    }
+    // const verdict = calculateVerdict(boardFields)
+    // switch (verdict) {
+    //   case X:
+    //     setGamer1Score((prevGamer1Score) => prevGamer1Score + 1)
+    //     setVerdict(verdict)
+    //     setContinueGameActive(true)
+    //     setModalIsOpen(true)
+    //     break
+    //   case O:
+    //     setGamer2Score((prevGamer1Score) => prevGamer1Score + 1)
+    //     setVerdict(verdict)
+    //     setContinueGameActive(true)
+    //     setModalIsOpen(true)
+    //     break
+    //   case TIE:
+    //     setVerdict(TIE)
+    //     setContinueGameActive(true)
+    //     setModalIsOpen(true)
+    //     break
+    //   default:
+    //     return
+    // }
   }, [boardFields])
 
   const handleClickField = useCallback((index, value) => {
@@ -129,26 +128,23 @@ const Board = () => {
     setBoardSize(parseInt(event.target.value) || 3)
   }
 
-  console.log(inputVal)
-
   return (
     <div>
-      <form className={classes.root} noValidate autoComplete="off">
-        <div>
-          <TextField
-            id="outlined-search"
-            label="Set board size"
-            type="search"
-            variant="outlined"
-            defaultValue="3"
-            onChange={handleChangeBoardSize}
-          />
-        </div>
-      </form>
-
       {(!startGame && (
         <div>
           <GameStart />
+          <form className={classes.root} noValidate autoComplete="off">
+            <div className="form-field">
+              <TextField
+                id="outlined-search"
+                label="Set board size"
+                type="search"
+                variant="outlined"
+                onChange={handleChangeBoardSize}
+              />
+            </div>
+          </form>
+          <h4 className="game-info-title">Who is going to start?</h4>
           <div className="btn-section">
             <PlayerButton onClick={() => handleClickGamerPicked(X)} value={X} />
             <PlayerButton onClick={() => handleClickGamerPicked(O)} value={O} />
@@ -169,14 +165,26 @@ const Board = () => {
             <GameStatus gamerTurn={gamerTurn} verdict={verdict} />
             <div className="game-board">
               <div className="board">
-                {boardFields.map((boardField, index) => (
-                  <Field
-                    key={index}
-                    value={boardField}
-                    index={index}
-                    onClick={handleClickField}
-                  />
-                ))}
+                {boardFields.map(
+                  (boardFieldsLine) =>
+                    boardFieldsLine.map((boardField, index) => (
+                      <Field
+                        key={index}
+                        value={boardField}
+                        index={index}
+                        onClick={handleClickField}
+                      />
+                    ))
+
+                  // boardFields.map((boardField, index) => (
+                  //   <Field
+                  //     key={index}
+                  //     value={boardField}
+                  //     index={index}
+                  //     onClick={handleClickField}
+                  //   />
+                  // )
+                )}
               </div>
             </div>
             <VerdictModal isOpen={modalIsOpen} />

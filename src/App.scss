@@ -119,6 +119,10 @@ $verdictColor: #0c66d3;
   color: $verdictColor;
 }
 
+.makeStyles-root-1 .form-field {
+  margin: 20px auto 41px;
+}
+
 @media screen and (min-width: 1024px) {
   .game-info {
     margin-top: 110px;

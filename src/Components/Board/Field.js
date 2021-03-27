@@ -29,4 +29,4 @@ const Field = ({ index, onClick, value }) => {
   )
 }
 
-export default React.memo(Field)
+export default Field
