@@ -11,6 +11,17 @@ import VerdictModal from "./VerdictModal"
 import PlayerButton from "./PlayerButton"
 import GameRestart from "../GameFlow/GameRestart"
 import { createBoardLogic } from "../../boardLogic"
+import { makeStyles } from "@material-ui/core/styles"
+import TextField from "@material-ui/core/TextField"
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}))
 
 const Board = () => {
   const [startGame, setStartGame] = useState(false)
@@ -23,12 +34,16 @@ const Board = () => {
   const [gamer1Score, setGamer1Score] = useState(0)
   const [gamer2Score, setGamer2Score] = useState(0)
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [boardSize, setBoardSize] = useState(3)
+
+  const [inputVal, setInputVal] = useState(3)
 
   const [boardLogic, setBoardLogic] = useState(null)
+  const classes = useStyles()
 
   useEffect(() => {
-    setBoardLogic(createBoardLogic(30))
-  }, [])
+    setBoardLogic(createBoardLogic(boardSize))
+  }, [boardSize])
 
   useEffect(() => {
     if (boardLogic !== null) {
@@ -110,8 +125,27 @@ const Board = () => {
 
   const gamerTurn = gamer1Turn ? X : O
 
+  const handleChangeBoardSize = (event) => {
+    setBoardSize(parseInt(event.target.value) || 3)
+  }
+
+  console.log(inputVal)
+
   return (
     <div>
+      <form className={classes.root} noValidate autoComplete="off">
+        <div>
+          <TextField
+            id="outlined-search"
+            label="Set board size"
+            type="search"
+            variant="outlined"
+            defaultValue="3"
+            onChange={handleChangeBoardSize}
+          />
+        </div>
+      </form>
+
       {(!startGame && (
         <div>
           <GameStart />
