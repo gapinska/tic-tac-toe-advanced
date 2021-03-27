@@ -164,7 +164,10 @@ const Board = () => {
             </div>
             <GameStatus gamerTurn={gamerTurn} verdict={verdict} />
             <div className="game-board">
-              <div className="board">
+              <div
+                className="board"
+                style={{ gridTemplateColumns: `repeat(${boardSize}, 100px)` }}
+              >
                 {
                   // boardFields.map(
                   //   (boardFieldsLine) =>
