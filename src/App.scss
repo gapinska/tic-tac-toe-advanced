@@ -39,17 +39,14 @@ $verdictColor: #0c66d3;
 
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  margin-top: 91px;
+  margin: 60px auto 0;
+  width: 90vw;
+  gap: 2px;
 }
 
 .field,
 .player-btn {
   font-size: 33px;
-}
-
-.field {
-  height: 40px;
 }
 
 .player-btn {
@@ -87,7 +84,7 @@ $verdictColor: #0c66d3;
 .game-status {
   position: absolute;
   z-index: 1;
-  margin: 30px auto 0;
+  margin: 24px auto 0;
   left: 0;
   right: 0;
   text-transform: uppercase;
@@ -121,6 +118,11 @@ $verdictColor: #0c66d3;
 
 .makeStyles-root-1 .form-field {
   margin: 20px auto 41px;
+}
+
+.field {
+  width: 97%;
+  padding-bottom: 97%;
 }
 
 @media screen and (min-width: 1024px) {

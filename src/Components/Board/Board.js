@@ -168,7 +168,7 @@ const Board = () => {
             <div className="game-board">
               <div
                 className="board"
-                style={{ gridTemplateColumns: `repeat(${boardSize}, 100px)` }}
+                style={{ gridTemplateColumns: `repeat(${boardSize}, 1fr)` }}
               >
                 {boardFields.map((boardField, index) => (
                   <Field
