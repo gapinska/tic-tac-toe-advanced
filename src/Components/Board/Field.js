@@ -1,5 +1,4 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
 import Paper from "@material-ui/core/Paper"
 
 const Field = ({ index, onClick, value, boardSize }) => {
@@ -10,7 +9,7 @@ const Field = ({ index, onClick, value, boardSize }) => {
         className="field"
         onClick={() => onClick(index, value)}
       >
-        {value}
+        <div className="field-value">{value}</div>
       </Paper>
     </div>
   )

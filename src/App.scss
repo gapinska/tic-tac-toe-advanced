@@ -44,7 +44,6 @@ $verdictColor: #0c66d3;
   gap: 2px;
 }
 
-.field,
 .player-btn {
   font-size: 33px;
 }
@@ -123,6 +122,13 @@ $verdictColor: #0c66d3;
 .field {
   width: 97%;
   padding-bottom: 97%;
+  position: relative;
+}
+
+.field-value {
+  position: absolute;
+  font-size: 77%;
+  top: 2%;
 }
 
 @media screen and (min-width: 1024px) {
