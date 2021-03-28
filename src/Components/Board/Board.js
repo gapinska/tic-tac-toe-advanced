@@ -13,6 +13,7 @@ import GameRestart from "../GameFlow/GameRestart"
 import { createBoardLogic } from "../../boardLogic"
 import { makeStyles } from "@material-ui/core/styles"
 import TextField from "@material-ui/core/TextField"
+import { calculateWinner } from "../../gameLogic"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,6 +37,7 @@ const Board = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [boardSize, setBoardSize] = useState(3)
   const [boardLogic, setBoardLogic] = useState(null)
+  const [winnerLines, setWinnerLines] = useState([])
   const classes = useStyles()
 
   useEffect(() => {
@@ -44,41 +46,81 @@ const Board = () => {
 
   useEffect(() => {
     if (boardLogic !== null) {
-      console.log(boardFields)
-      console.log(boardLogic.calculateWinnerLines())
-      //   setBoardFields(boardLogic.createEmptyBoard(boardSize))
+      setWinnerLines(boardLogic.calculateWinnerLines())
       setBoardFields(boardLogic.createInitialBoard(boardSize))
     }
   }, [boardLogic])
 
   useEffect(() => {
-    // const verdict = calculateVerdict(boardFields)
-    // switch (verdict) {
-    //   case X:
-    //     setGamer1Score((prevGamer1Score) => prevGamer1Score + 1)
-    //     setVerdict(verdict)
-    //     setContinueGameActive(true)
-    //     setModalIsOpen(true)
-    //     break
-    //   case O:
-    //     setGamer2Score((prevGamer1Score) => prevGamer1Score + 1)
-    //     setVerdict(verdict)
-    //     setContinueGameActive(true)
-    //     setModalIsOpen(true)
-    //     break
-    //   case TIE:
-    //     setVerdict(TIE)
-    //     setContinueGameActive(true)
-    //     setModalIsOpen(true)
-    //     break
-    //   default:
-    //     return
-    // }
+    if (boardLogic) {
+      const verdict = calculateVerdict(boardFields, winnerLines, boardSize)
+      switch (verdict) {
+        case X:
+          setGamer1Score((prevGamer1Score) => prevGamer1Score + 1)
+          setVerdict(verdict)
+          setContinueGameActive(true)
+          setModalIsOpen(true)
+          break
+        case O:
+          setGamer2Score((prevGamer1Score) => prevGamer1Score + 1)
+          setVerdict(verdict)
+          setContinueGameActive(true)
+          setModalIsOpen(true)
+          break
+        case TIE:
+          setVerdict(TIE)
+          setContinueGameActive(true)
+          setModalIsOpen(true)
+          break
+        default:
+          return
+      }
+    }
   }, [boardFields])
 
-  const handleClickField = useCallback((index, value) => {
-    console.log(`index: ${index} value : ${value}`)
+  //   useEffect(() => {
+  //     if (boardLogic) {
+  //       const verdict = calculateWinner(boardFields, winnerLines, boardSize)
+  //       //   console.log("verdict" + verdict)
+  //       //   //   console.log(verdict)
+  //       console.log("boardFields " + boardFields)
+  //       console.log("winnerLines " + winnerLines)
+  //       console.log("boardSize " + boardSize)
+  //       //   console.log(
+  //       //     "calculateWinner " +
+  //       //       calculateWinner(boardFields, winnerLines, boardSize)
+  //       //   )
+  //     }
+  //     // console.log("boardFields " + boardFields)
+  //     // console.log("winnerLines " + winnerLines)
+  //     // console.log("boardSize " + boardSize)
+  //     // console.log(
+  //     //   "calculateWinner " + calculateWinner(boardFields, winnerLines, boardSize)
+  //     // )
+  //     // switch (verdict) {
+  //     //   case X:
+  //     //     setGamer1Score((prevGamer1Score) => prevGamer1Score + 1)
+  //     //     setVerdict(verdict)
+  //     //     setContinueGameActive(true)
+  //     //     setModalIsOpen(true)
+  //     //     break
+  //     //   case O:
+  //     //     setGamer2Score((prevGamer1Score) => prevGamer1Score + 1)
+  //     //     setVerdict(verdict)
+  //     //     setContinueGameActive(true)
+  //     //     setModalIsOpen(true)
+  //     //     break
+  //     //   case TIE:
+  //     //     setVerdict(TIE)
+  //     //     setContinueGameActive(true)
+  //     //     setModalIsOpen(true)
+  //     //     break
+  //     //   default:
+  //     //     return
+  //     // }
+  //   }, [boardFields])
 
+  const handleClickField = useCallback((index, value) => {
     if (value === null) {
       setGamer1Turn((gamer1Turn) => {
         setBoardFields((oldBoardFields) => {
@@ -117,6 +159,7 @@ const Board = () => {
     setGamer2Score(0)
     setVerdict(null)
     setModalIsOpen(false)
+    setBoardSize(3)
   }
 
   const handleClickEndGame = () => {

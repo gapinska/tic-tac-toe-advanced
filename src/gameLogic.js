@@ -2,51 +2,23 @@ const X = "X"
 const O = "O"
 const TIE = "TIE"
 
-const WINNER_LINES = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-]
-
-Object.freeze(WINNER_LINES)
-WINNER_LINES.forEach((WINNER_LINE) => Object.freeze(WINNER_LINE))
-
-// function calculateWinner(boardFields, winnerLines, boardSize) {
-//   for (let i = 0; i < boardSize; i++) {
-//     const arr = winnerLines[i]
-//     if(arr[0])
-//     if (boardFields[a] && boardFields[a] === boardFields[b] && boardFields[a] === boardFields[c]) {
-//       return boardFields[a]
-//     }
-//   }
-//   return null
-// }
-
-// function calculateWinner(boardFields) {
-//   for (let i = 0; i < WINNER_LINES.length; i++) {
-//     const [a, b, c] = WINNER_LINES[i]
-//     if (boardFields[a] && boardFields[a] === boardFields[b] && boardFields[a] === boardFields[c]) {
-//       return boardFields[a]
-//     }
-//   }
-//   return null
-// }
-
 function calculateWinner(boardFields, winnerLines, boardSize) {
   for (let i = 0; i < winnerLines.length; i++) {
     const arr = winnerLines[i]
-    for (let i = 0; i < boardSize; i++) {
-      if (!boardFields[arr[i]]) {
+    let acc = []
+    for (let i = 0; i < arr.length; i++) {
+      acc[i] = boardFields[arr[i]]
+    }
+    if (
+      acc.reduce(function (a, b) {
+        return a === b ? a : NaN
+      }) &&
+      acc[0] !== null
+    ) {
+      return acc[0]
+    } else {
+      if (i === winnerLines.length - 1) {
         return null
-      } else {
-        if (i === boardSize - 1) {
-          return boardFields[arr[0]]
-        }
       }
     }
   }
@@ -77,4 +49,4 @@ function calculateFinalVerdict(gamer1Score, gamer2Score) {
   } else return TIE
 }
 
-export { calculateVerdict, calculateFinalVerdict, calculateWinner, X, O, TIE }
+export { calculateVerdict, calculateWinner, calculateFinalVerdict, X, O, TIE }

@@ -13,8 +13,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Field = ({ index, onClick, value }) => {
-  console.log("RENDER")
-
   const classes = useStyles()
   return (
     <div className={classes.root}>
