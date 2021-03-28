@@ -127,7 +127,7 @@ $verdictColor: #0c66d3;
 
 .field-value {
   position: absolute;
-  font-size: 77%;
+  font-size: 72%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -141,6 +141,10 @@ $verdictColor: #0c66d3;
   .board {
     margin: 81px auto 30px;
     width: 60vh;
+  }
+
+  .field-value {
+    font-size: 80%;
   }
 }
 
