@@ -78,48 +78,6 @@ const Board = () => {
     }
   }, [boardFields])
 
-  //   useEffect(() => {
-  //     if (boardLogic) {
-  //       const verdict = calculateWinner(boardFields, winnerLines, boardSize)
-  //       //   console.log("verdict" + verdict)
-  //       //   //   console.log(verdict)
-  //       console.log("boardFields " + boardFields)
-  //       console.log("winnerLines " + winnerLines)
-  //       console.log("boardSize " + boardSize)
-  //       //   console.log(
-  //       //     "calculateWinner " +
-  //       //       calculateWinner(boardFields, winnerLines, boardSize)
-  //       //   )
-  //     }
-  //     // console.log("boardFields " + boardFields)
-  //     // console.log("winnerLines " + winnerLines)
-  //     // console.log("boardSize " + boardSize)
-  //     // console.log(
-  //     //   "calculateWinner " + calculateWinner(boardFields, winnerLines, boardSize)
-  //     // )
-  //     // switch (verdict) {
-  //     //   case X:
-  //     //     setGamer1Score((prevGamer1Score) => prevGamer1Score + 1)
-  //     //     setVerdict(verdict)
-  //     //     setContinueGameActive(true)
-  //     //     setModalIsOpen(true)
-  //     //     break
-  //     //   case O:
-  //     //     setGamer2Score((prevGamer1Score) => prevGamer1Score + 1)
-  //     //     setVerdict(verdict)
-  //     //     setContinueGameActive(true)
-  //     //     setModalIsOpen(true)
-  //     //     break
-  //     //   case TIE:
-  //     //     setVerdict(TIE)
-  //     //     setContinueGameActive(true)
-  //     //     setModalIsOpen(true)
-  //     //     break
-  //     //   default:
-  //     //     return
-  //     // }
-  //   }, [boardFields])
-
   const handleClickField = useCallback((index, value) => {
     if (value === null) {
       setGamer1Turn((gamer1Turn) => {
@@ -145,7 +103,7 @@ const Board = () => {
     if (continueGameActive) {
       setGamer1Turn(!gamer1Started)
       setgamer1Started(!gamer1Started)
-      setBoardFields(Array(9).fill(null))
+      setBoardFields(boardLogic.createInitialBoard(boardSize))
       setVerdict(null)
       setContinueGameActive(false)
       setModalIsOpen(false)
