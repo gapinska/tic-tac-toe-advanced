@@ -2,7 +2,9 @@
 
 The game is dedicated for two players.
 
-In order to win the single round, a player must place three of their marks in a horizontal, vertical, or diagonal row.
+You can set the board size - set number between 3-20.
+
+In order to win the single round, a player must place all marks in a horizontal, vertical, or diagonal row.
 
 You can play as many rounds as you like, the final verdict is based on the total score.
 
