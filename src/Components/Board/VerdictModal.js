@@ -3,7 +3,7 @@ import Modal from "react-modal"
 
 const customStyles = {
   overlay: {
-    top: "254px",
+    top: "243px",
   },
   content: {
     top: "50%",

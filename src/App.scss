@@ -39,7 +39,7 @@ $verdictColor: #0c66d3;
 
 .board {
   display: grid;
-  margin: 60px auto 0;
+  margin: 81px auto 0;
   width: 90vw;
   gap: 2px;
 }
@@ -83,7 +83,7 @@ $verdictColor: #0c66d3;
 .game-status {
   position: absolute;
   z-index: 1;
-  margin: 24px auto 0;
+  margin: 31px auto 0;
   left: 0;
   right: 0;
   text-transform: uppercase;
@@ -128,12 +128,19 @@ $verdictColor: #0c66d3;
 .field-value {
   position: absolute;
   font-size: 77%;
-  top: 2%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media screen and (min-width: 1024px) {
   .game-info {
     margin-top: 110px;
+  }
+
+  .board {
+    margin: 81px auto 30px;
+    width: 60vh;
   }
 }
 
@@ -144,6 +151,6 @@ $verdictColor: #0c66d3;
   }
 
   .board {
-    margin-top: 120px;
+    margin-top: 103px;
   }
 }
