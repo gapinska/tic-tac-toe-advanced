@@ -2,7 +2,7 @@
   "name": "tic-tac-toe",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://gapinska.github.io/tic-tac-toe",
+  "homepage": "https://gapinska.github.io/tic-tac-toe-advanced",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@testing-library/jest-dom": "^5.11.4",
