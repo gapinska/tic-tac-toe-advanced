@@ -127,10 +127,14 @@ $verdictColor: #0c66d3;
 
 .field-value {
   position: absolute;
-  font-size: 72%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  font-size: 23px;
+
+  &.small {
+    font-size: 13px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -143,8 +147,8 @@ $verdictColor: #0c66d3;
     width: 60vh;
   }
 
-  .field-value {
-    font-size: 80%;
+  .field-value.small {
+    font-size: 17px;
   }
 }
 

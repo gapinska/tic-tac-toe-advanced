@@ -242,6 +242,7 @@ const Board = () => {
                     value={boardField}
                     index={index}
                     onClick={handleClickField}
+                    boardSize={state.boardSize}
                   />
                 ))}
               </div>
